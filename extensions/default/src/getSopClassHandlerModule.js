@@ -3,7 +3,6 @@ import { id } from './id';
 import getDisplaySetMessages from './getDisplaySetMessages';
 import getDisplaySetsFromUnsupportedSeries from './getDisplaySetsFromUnsupportedSeries';
 import { chartHandler } from './SOPClassHandlers/chartSOPClassHandler';
-import { extendedImageSet } from '@ohif/extension-flywheel-core/src/classes/ExtendedImageSet';
 
 const { isImage, sopClassDictionary, isDisplaySetReconstructable } = utils;
 const { ImageSet } = classes;
