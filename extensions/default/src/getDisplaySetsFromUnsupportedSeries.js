@@ -6,8 +6,18 @@ import { DisplaySetMessage, DisplaySetMessageList } from '@ohif/core';
 export default function getDisplaySetsFromUnsupportedSeries(instances) {
   const imageSet = new ImageSet(instances);
   const messages = new DisplaySetMessageList();
-  messages.addMessage(DisplaySetMessage.CODES.UNSUPPORTED_DISPLAYSET);
+
   const instance = instances[0];
+
+  // Check if the data has an SOP Class UID
+  const sopClassUID = instances[0].SOPClassUID;
+  if (!sopClassUID) {
+    messages.addMessage(DisplaySetMessage.CODES.MISSING_SOP_CLASS_UID);
+  } else {
+    messages.addMessage(DisplaySetMessage.CODES.UNSUPPORTED_SOP_CLASS_UID, {
+      sopClassUID,
+    });
+  }
 
   imageSet.setAttributes({
     displaySetInstanceUID: imageSet.uid, // create a local alias for the imageSet UID
